@@ -30,9 +30,7 @@ Start with `pockets.json` for predictions, or load `cofold/aligned/` with zPocke
 
 ## Probe protonation
 
-The probe SMILES in `data/probes.csv` were all written in neutral form, so every probe carries a formal charge of zero. This is wrong for several of them at physiological pH: pyrophosphate, ATP, citrate, etc. This was unintentional, and the cofolds were not re-run.
-
-However, I suspect the impact is not serious. Boltz-2 strips hydrogens and reads ligands as a heavy-atom graph, so neutral and deprotonated forms differ only in the per-atom formal-charge feature, and anecdotal reports of protonation insensitivity exist (e.g. see [this thread](https://github.com/jwohlwend/boltz/issues/499)). The point is to rerun with correct protonation if desired!
+All probe SMILES had net formal charge zero. Several, including ATP, pyrophosphate and citrate, were unintentionally supplied in protonation states unrepresentative of physiological pH. The reported results hold for these exact probes. We have not tested sensitivity to protonation state, though these probes still recover 69% of annotated sites.
 
 ## Models
 
