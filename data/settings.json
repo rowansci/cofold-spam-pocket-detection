@@ -1,0 +1,58 @@
+{
+  "cofold": {
+    "model": "Boltz-2",
+    "probes_per_protein": 16,
+    "seed": 17,
+    "diffusion_steps": 128,
+    "recycles": 3,
+    "samples_per_probe": 1,
+    "particles": 1,
+    "MSA_max_sequences": 1024,
+    "physical_potentials": true,
+    "kernels": false,
+    "templates": false,
+    "pocket_restraints": false,
+    "checkpoint": "boltz2_conf.ckpt",
+    "implementation": "Boltz implementation in the DeCAF repository; not the distilled DeCAF model"
+  },
+  "zpocket": {
+    "model": "ESMFold2 + released pairformer2 head",
+    "seed": 0,
+    "diffusion_steps": 100,
+    "trunk_loops": 10,
+    "structure_samples": 3,
+    "reference_sample": 0,
+    "MSA_max_sequences": 16384,
+    "MSA_column_masking": false,
+    "noise_scale": 1.003,
+    "step_scale": 1.5,
+    "max_sigma": 256,
+    "LM_dropout": 0.25,
+    "ESMC_dtype": "bf16",
+    "memory_adaptations": "CPU offloading/chunking; sequential confidence evaluation",
+    "decoder": {
+      "residue_threshold": 0.3,
+      "bandwidth_A": 14,
+      "minimum_residues": 3
+    }
+  },
+  "p2rank": {
+    "version": "2.5.1",
+    "configuration": "alphafold",
+    "hybrid_deduplication_A": 2,
+    "hybrid_ranking": "mean zPocket probability over residues with heavy atoms within 8 A of center"
+  },
+  "processing": {
+    "reference": "zpocket/<protein_id>_sample0.cif (ESMFold2 sample 0)",
+    "fit": "Kabsch on corresponding CA atoms of residues with a heavy atom <5 A from probe",
+    "minimum_noncollinear_anchors": 3,
+    "maximum_fit_RMSD_A": 5,
+    "center": "mean of ligand heavy atoms within 4.5 A of protein; whole-ligand fallback",
+    "ranking": "ligand ipTM * mean ligand-heavy-atom pLDDT",
+    "suppression_A": 4
+  },
+  "evaluation": {
+    "N_plus_2": "Independent-site recall within 4 A after annotation masking",
+    "top1": "First emitted suggestion; no replacement after masking; denominator includes missing/masked first suggestions"
+  }
+}

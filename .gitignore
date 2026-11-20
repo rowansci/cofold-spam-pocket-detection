@@ -1,0 +1,10 @@
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+
+# Unpacked copy of the dataset archive.
+pocket-cofold-data/
+
+# Dataset archive is distributed as a release asset.
+pocket-cofold-data.zip

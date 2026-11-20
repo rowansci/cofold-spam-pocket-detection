@@ -1,0 +1,138 @@
+{
+  "definitions": {
+    "n_plus_2": "For a protein with N annotated sites, score up to N+2 eligible predictions. Each site is recovered if any counted center is within 4 angstroms; a center may recover multiple sites.",
+    "top1": "The first emitted prediction is a hit if it recovers an annotated site within 4 angstroms. All proteins remain in the denominator; missing or annotation-masked first predictions are not confirmed hits.",
+    "recovery_95ci": "95% bootstrap interval, resampling proteins.",
+    "hybrid": "P2Rank + zPocket",
+    "overlap": "Exclusive site counts at the N+2 allowance, combined cohort."
+  },
+  "groups": {
+    "development": {
+      "proteins": 70,
+      "annotated_sites": 80,
+      "methods": {
+        "cofold": {
+          "n_plus_2_sites_recovered": 57,
+          "n_plus_2_suggestions": 199,
+          "recovery": 0.7125,
+          "recovery_95ci": [
+            0.6075949367088608,
+            0.8108108108108109
+          ],
+          "top1_proteins_hit": 44,
+          "top1_hit_rate": 0.6285714285714286
+        },
+        "zpocket": {
+          "n_plus_2_sites_recovered": 47,
+          "n_plus_2_suggestions": 77,
+          "recovery": 0.5875,
+          "recovery_95ci": [
+            0.47674418604651164,
+            0.7000324675324646
+          ],
+          "top1_proteins_hit": 45,
+          "top1_hit_rate": 0.6428571428571429
+        },
+        "hybrid": {
+          "n_plus_2_sites_recovered": 53,
+          "n_plus_2_suggestions": 188,
+          "recovery": 0.6625,
+          "recovery_95ci": [
+            0.5599880952380953,
+            0.7625
+          ],
+          "top1_proteins_hit": 47,
+          "top1_hit_rate": 0.6714285714285714
+        }
+      }
+    },
+    "validation": {
+      "proteins": 140,
+      "annotated_sites": 175,
+      "methods": {
+        "cofold": {
+          "n_plus_2_sites_recovered": 119,
+          "n_plus_2_suggestions": 415,
+          "recovery": 0.68,
+          "recovery_95ci": [
+            0.6067415730337079,
+            0.7527487961476724
+          ],
+          "top1_proteins_hit": 85,
+          "top1_hit_rate": 0.6071428571428571
+        },
+        "zpocket": {
+          "n_plus_2_sites_recovered": 91,
+          "n_plus_2_suggestions": 139,
+          "recovery": 0.52,
+          "recovery_95ci": [
+            0.45054945054945056,
+            0.5906432748538012
+          ],
+          "top1_proteins_hit": 86,
+          "top1_hit_rate": 0.6142857142857143
+        },
+        "hybrid": {
+          "n_plus_2_sites_recovered": 105,
+          "n_plus_2_suggestions": 451,
+          "recovery": 0.6,
+          "recovery_95ci": [
+            0.5317919075144508,
+            0.6705202312138728
+          ],
+          "top1_proteins_hit": 87,
+          "top1_hit_rate": 0.6214285714285714
+        }
+      }
+    },
+    "combined": {
+      "proteins": 210,
+      "annotated_sites": 255,
+      "methods": {
+        "cofold": {
+          "n_plus_2_sites_recovered": 176,
+          "n_plus_2_suggestions": 614,
+          "recovery": 0.6901960784313725,
+          "recovery_95ci": [
+            0.6311787072243346,
+            0.748
+          ],
+          "top1_proteins_hit": 129,
+          "top1_hit_rate": 0.6142857142857143
+        },
+        "zpocket": {
+          "n_plus_2_sites_recovered": 138,
+          "n_plus_2_suggestions": 216,
+          "recovery": 0.5411764705882353,
+          "recovery_95ci": [
+            0.4823494536154383,
+            0.6015052279135337
+          ],
+          "top1_proteins_hit": 131,
+          "top1_hit_rate": 0.6238095238095238
+        },
+        "hybrid": {
+          "n_plus_2_sites_recovered": 158,
+          "n_plus_2_suggestions": 639,
+          "recovery": 0.6196078431372549,
+          "recovery_95ci": [
+            0.562015503875969,
+            0.6771653543307087
+          ],
+          "top1_proteins_hit": 134,
+          "top1_hit_rate": 0.638095238095238
+        }
+      }
+    }
+  },
+  "overlap": {
+    "cofold": 34,
+    "zpocket": 0,
+    "hybrid": 3,
+    "cofold_and_zpocket": 0,
+    "cofold_and_hybrid": 17,
+    "zpocket_and_hybrid": 13,
+    "cofold_and_zpocket_and_hybrid": 125,
+    "none": 63
+  }
+}
